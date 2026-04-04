@@ -2,7 +2,6 @@
 name = "tennis-scoreboard"
 version = "0.1.0"
 description = "Add your description here"
-readme = "README.md"
 authors = [
     { name = "Ilia Korepanov", email = "ikorepanov.dev@gmail.com" }
 ]
