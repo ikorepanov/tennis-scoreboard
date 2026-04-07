@@ -15,4 +15,4 @@ COPY src/ ./src
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-install-project --no-dev
 
-CMD ["uv", "run", "tennis-scoreboard"]
+CMD ["uv", "run", "--no-dev", "tennis-scoreboard"]
