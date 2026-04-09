@@ -13,6 +13,6 @@ COPY pyproject.toml uv.lock ./
 COPY src/ ./src
 
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen --no-install-project --no-dev
+    uv sync --frozen --no-dev
 
-CMD ["uv", "run", "--no-dev", "tennis-scoreboard"]
+CMD ["uv", "run", "--no-dev", "--no-sync", "tennis-scoreboard"]
