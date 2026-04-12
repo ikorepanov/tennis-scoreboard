@@ -11,11 +11,15 @@ uv run tennis-scoreboard
 ### Сбилдить образ
 
 ```sh
-docker build -t tennis-scoreboard -f ./docker/Dockerfile .
+docker build --network=host -t tennis-sb-image -f ./docker/Dockerfile .
 ```
+
+NB! `--network=host`: позволяет Docker использовать интернет-соединение сервера напрямую (в обход виртуальной сети Docker).
 
 ### Запустить контейнер
 
 ```sh
-docker run --name tennis-scoreboard-container tennis-scoreboard
+docker run --rm --name tennis-sb-container tennis-sb-image
 ```
+
+NB! `--rm`: автоматически удалит контейнер после того, как он завершит работу.
