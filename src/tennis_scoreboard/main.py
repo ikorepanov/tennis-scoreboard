@@ -1,29 +1,9 @@
-from sqlalchemy import MetaData, Table, create_engine, URL, text
-from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy import create_engine, text
 
-url_object = URL.create(
-    drivername='mysql+pymysql',
-    username='root',
-    password='asdf',
-    host='localhost',
-    port='3306',
-    database='testdb',
-)
+from tennis_scoreboard.config import SETTINGS
 
-engine = create_engine(url_object, echo=True)
+engine = create_engine(url=SETTINGS.DATABASE_URL_pymysql, echo=True)
 
-metadata = MetaData()
-
-my_table = Table('users', metadata, autoload_with=engine)
-
-Session = sessionmaker(bind=engine)
-session = Session()
-results = session.query(my_table).all()
-
-for row in results:
-    print(row)
-
-# with engine.connect() as connection:
-#     result = connection.execute(text("SELECT * FROM users"))
-#     for row in result:
-#         print(row)
+with engine.connect() as conn:
+    result = conn.execute(text('SELECT VERSION()'))
+    print(f'{result.first()=}')
