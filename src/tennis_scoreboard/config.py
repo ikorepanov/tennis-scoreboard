@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     DB_PORT: int
 
     @property
-    def DATABASE_URL_pymysql(self):
+    def database_url_pymysql(self) -> URL:
         return URL.create(
             drivername='mysql+pymysql',
             username=self.MYSQL_USER,
@@ -24,4 +24,4 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file='.env')
 
 
-SETTINGS = Settings()  # type: ignore[reportCallIssue]
+SETTINGS = Settings()
