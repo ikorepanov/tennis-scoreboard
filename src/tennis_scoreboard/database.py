@@ -1,9 +1,12 @@
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 from tennis_scoreboard.config import SETTINGS
 
 engine = create_engine(url=SETTINGS.database_url_pymysql, echo=True)
 
-with engine.connect() as conn:
-    result = conn.execute(text('SELECT VERSION()'))
-    print(f'{result.first()=}')
+session_factory = sessionmaker(engine)
+
+
+class Base(DeclarativeBase):
+    pass
